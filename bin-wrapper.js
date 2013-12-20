@@ -190,8 +190,7 @@ BinWrapper.prototype._parse = function (opts) {
     var required = [
         'bin',
         'name',
-        'path',
-        'url'
+        'path'
     ];
 
     if (mout.object.hasOwn(opts.platform, [platform])) {
