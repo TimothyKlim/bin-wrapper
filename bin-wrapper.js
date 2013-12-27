@@ -1,6 +1,5 @@
 'use strict';
 
-var download = require('download');
 var exec = require('child_process').exec;
 var fs = require('fs');
 var hasOwn = require('mout/object/hasOwn');
@@ -108,7 +107,8 @@ BinWrapper.prototype.build = function (cb) {
  */
 
 BinWrapper.prototype._download = function (src, dest, opts) {
-    var get = download(src, dest, opts);
+    var download = require('download'),
+        get = download(src, dest, opts);
 
     get.on('response', function (res) {
         var len = parseInt(res.headers['content-length'], 10);
