@@ -140,7 +140,7 @@ BinWrapper.prototype._download = function (src, dest, opts) {
 BinWrapper.prototype._path = function () {
     var self = this,
         envPath = !!process.env.PATH ? process.env.PATH.split(':') : [],
-        paths = [this.dest].concat(envPath),
+        paths = envPath.concat(this.dest),
         i = 0,
         dir;
 
