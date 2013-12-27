@@ -138,10 +138,17 @@ BinWrapper.prototype._download = function (src, dest, opts) {
  */
 
 BinWrapper.prototype._path = function () {
-    var self = this;
+    var self = this,
+        envPath = !!process.env.PATH ? process.env.PATH.split(':') : [],
+        paths = [this.dest].concat(envPath),
+        i = 0,
+        dir;
 
-    if (fs.existsSync(path.join(this.dest, this.bin))) {
-        return path.join(self.dest, self.bin);
+    for (;i < paths.length; i++) {
+      dir = paths[i];
+      if (fs.existsSync(path.join(dir, this.bin))) {
+        return path.join(dir, this.bin);
+      }
     }
 
     if (isbin(this.bin)) {
